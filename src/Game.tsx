@@ -18,7 +18,7 @@ interface GameProps {
 }
 
 const targets = targetList
-  .slice(0, targetList.indexOf("murky") + 1); // Words no rarer than this one
+  //.slice(0, targetList.indexOf("murky") + 1); // Words no rarer than this one
 
 function randomTarget(wordLength: number) {
   const eligible = targets.filter((word) => word.length === wordLength);
@@ -54,7 +54,7 @@ function Game(props: GameProps) {
       return;
     }
     if (guesses.length === props.maxGuesses) return;
-    if (/^[a-z]$/.test(key)) {
+    if (/^[א-ת]$/.test(key)) {
       setCurrentGuess((guess) => (guess + key).slice(0, wordLength));
       setHint("");
     } else if (key === "Backspace") {
@@ -124,7 +124,7 @@ function Game(props: GameProps) {
     });
 
   return (
-    <div className="Game" style={{ display: props.hidden ? "none" : "block" }}>
+    <div className="Game" dir="rtl" style={{ display: props.hidden ? "none" : "block" }}>
       <div className="Game-options">
         <label htmlFor="wordLength">Letters:</label>
         <input
